@@ -294,7 +294,8 @@ button {
   .cover-media {
     grid-area: media;
     align-self: center;
-    height: min(420px, 58vh);
+    height: auto;
+    aspect-ratio: 2 / 1; /* faixa larga como no celular: mostra a foto inteira */
     margin-top: 0;
   }
   .cover-cta {
