@@ -1,5 +1,6 @@
 import type { Difficulty, Game } from '../api/types';
 import { LEVELS, LEVEL_ORDER } from '../lib/difficulty';
+import { InfoTip } from '../components/InfoTip';
 
 interface Props {
   game: Game;
@@ -48,8 +49,14 @@ export function NameLevelScreen({
           />
         </div>
 
-        <div className="kicker kicker--muted" style={{ marginTop: 34, color: 'var(--ink-55)' }}>
-          Escolha o conjunto
+        <div style={{ marginTop: 34, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span className="kicker kicker--muted" style={{ color: 'var(--ink-55)' }}>
+            Escolha o conjunto
+          </span>
+          <InfoTip
+            align="left"
+            text="Cada conjunto tem 10 afirmações fixas. Fácil, Médio e Difícil valem 10, 20 e 30 pontos por acerto. Misto reúne perguntas dos vários níveis. Algumas trazem dica — quem usa leva metade dos pontos naquela pergunta."
+          />
         </div>
 
         <div className="levels-grid">

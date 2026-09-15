@@ -524,6 +524,55 @@ textarea.input {
   width: auto;
 }
 
+/* ====================== TOOLTIP (InfoTip) ====================== */
+.infotip {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+.infotip-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  background: none;
+  font: 600 11px/1 var(--font);
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  padding: 0;
+}
+.infotip-dot:hover {
+  background: rgba(0, 136, 176, 0.1);
+}
+.infotip-bubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  z-index: 30;
+  width: max-content;
+  max-width: min(260px, 78vw);
+  background: var(--ink);
+  color: #fff;
+  padding: 9px 11px;
+  border-radius: 6px;
+  font: 400 12.5px/1.4 var(--font);
+  text-align: left;
+  text-wrap: pretty;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+}
+.infotip-bubble[data-align='center'] {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.infotip-bubble[data-align='left'] {
+  left: 0;
+}
+.infotip-bubble[data-align='right'] {
+  right: 0;
+}
+
 /* --- Utilidades --- */
 .spin {
   width: 34px;

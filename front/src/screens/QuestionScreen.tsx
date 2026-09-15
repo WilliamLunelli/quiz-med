@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Difficulty, PlayQuestion } from '../api/types';
 import { LEVELS, halfPoints } from '../lib/difficulty';
+import { InfoTip } from '../components/InfoTip';
 
 interface Props {
   question: PlayQuestion;
@@ -55,7 +56,13 @@ export function QuestionScreen({
             {meta.label}
           </span>
           <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-            <div style={{ font: '600 13px/1 var(--font)', color: 'var(--ink)' }}>vale {points} pontos</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'flex-end' }}>
+              <span style={{ font: '600 13px/1 var(--font)', color: 'var(--ink)' }}>vale {points} pontos</span>
+              <InfoTip
+                align="right"
+                text={`Acerto sem dica: valor cheio (${meta.fullPoints}). Com dica: metade (${halfPoints(meta.fullPoints)}). Errar: 0.`}
+              />
+            </div>
             <div style={{ marginTop: 4, font: 'italic 400 11.5px/1 var(--font)', color: 'var(--ink-55)' }}>
               {pointsNote}
             </div>
@@ -86,18 +93,23 @@ export function QuestionScreen({
         {hasHint && (
           <div style={{ marginTop: 20, minHeight: 92 }}>
             {!open ? (
-              <button
-                className="qbtn--ghost"
-                onClick={openHint}
-                style={{ padding: 0, display: 'flex', alignItems: 'center', gap: 9, font: '600 15px/1 var(--font)', color: 'var(--cyan)' }}
-              >
-                <span
-                  style={{ width: 26, height: 26, border: '1px solid var(--cyan)', borderRadius: '50%', display: 'grid', placeItems: 'center', fontSize: 13 }}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                <button
+                  className="qbtn--ghost"
+                  onClick={openHint}
+                  style={{ padding: 0, display: 'flex', alignItems: 'center', gap: 9, font: '600 15px/1 var(--font)', color: 'var(--cyan)' }}
                 >
-                  ?
+                  <span
+                    style={{ width: 26, height: 26, border: '1px solid var(--cyan)', borderRadius: '50%', display: 'grid', placeItems: 'center', fontSize: 13 }}
+                  >
+                    ?
+                  </span>
+                  Pedir dica
+                </button>
+                <span style={{ font: 'italic 400 12.5px/1.35 var(--font)', color: 'var(--ink-55)' }}>
+                  Ao usar a dica, esta pergunta passa a valer <strong style={{ fontWeight: 600, fontStyle: 'normal' }}>metade dos pontos</strong>.
                 </span>
-                Pedir dica
-              </button>
+              </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <button
