@@ -1,9 +1,12 @@
 # Quiz DPP — Frontend
 
-App mobile do participante: a tela que abre ao escanear o QR code. Capa, escolha
-de nível, 10 afirmações de verdadeiro/falso com dica e feedback imediato, e o
-resultado final com revisão das fundamentações. Consome a API REST do backend
-(pasta `../back`).
+Dois usos no mesmo app, consumindo a API REST do backend (pasta `../back`):
+
+- **Tela inicial = criar jogo** (autor): monta capa, cor, perguntas e gera o QR
+  code. Vê **Meus jogos** — só os que este navegador criou.
+- **Participante** (`?game=<id>`, o que o QR abre): capa, escolha de nível, 10
+  afirmações de verdadeiro/falso com dica e feedback imediato, resultado final
+  com revisão das fundamentações.
 
 Recriado a partir do handoff de design do Claude Design (sistema "broadsheet",
 Source Serif 4, cor institucional `#162052`).
@@ -35,8 +38,9 @@ npm run preview     # serve o build localmente
 
 ## Criar um jogo (autor)
 
-Abra `http://localhost:5173/?criar` (ou `?create`). É a tela do autor:
+A **tela inicial** (`http://localhost:5173/`, sem `?game=`) é a do autor:
 
+- **Meus jogos**: lista só os jogos deste criador (ver isolamento abaixo).
 - Capa: título da matéria, título do trabalho, nome do grupo.
 - **Cor da capa**: cinco cores predefinidas, um seletor nativo, e um campo
   hexadecimal (aceita `#RGB` ou `#RRGGBB`). A tela inteira reflete a cor
@@ -50,23 +54,26 @@ Abra `http://localhost:5173/?criar` (ou `?create`). É a tela do autor:
 A logo da faculdade (São Leopoldo Mandic) fica em `public/` e aparece na capa
 e na tela de criação, como no design.
 
-## Qual jogo o app abre
+## Rotas (`src/App.tsx`)
 
-Resolvido nesta ordem (`src/App.tsx`):
+- **Sem `?game=`** → tela de criar jogo (autor). É a inicial.
+- **`?game=<id>`** → fluxo do participante para aquele jogo. É o que o QR abre.
 
-1. `?game=<id>` na URL — **é assim que o QR code aponta para um jogo específico**.
-2. `VITE_DEFAULT_GAME_ID` no `.env`, se definido.
-3. Senão, busca o jogo mais recente em `GET /api/games`.
+O QR gerado ao criar um jogo aponta para `.../?game=<id>`.
 
-Para o QR code, gere uma URL como `https://SEU_APP/?game=<gameId>` (o `gameId`
-aparece no log do seed do backend).
+## Isolamento por criador (sem login)
+
+Cada navegador guarda um **token de dono** aleatório em `localStorage`
+(`src/lib/owner.ts`), enviado no `POST /api/games`. A lista **Meus jogos** vem de
+`GET /api/games?owner=<token>`, que devolve só os jogos daquele token. Assim, um
+criador nunca vê os jogos de outro, e ninguém consegue listar todos. Trocar de
+navegador ou limpar os dados do site = outra identidade (e outros jogos).
 
 ## Configuração (`.env`)
 
-| Variável               | Efeito                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| `VITE_API_URL`         | Base da API. Vazio = usa o proxy `/api` do Vite (dev).       |
-| `VITE_DEFAULT_GAME_ID` | Jogo padrão quando a URL não traz `?game=`.                  |
+| Variável       | Efeito                                                  |
+| -------------- | ------------------------------------------------------- |
+| `VITE_API_URL` | Base da API. Vazio = usa o proxy `/api` do Vite (dev).  |
 
 Em produção, aponte `VITE_API_URL` para a URL pública da API.
 

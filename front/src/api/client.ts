@@ -47,7 +47,11 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 }
 
 export const api = {
-  listGames: () => request<{ count: number; games: GameListItem[] }>('/api/games'),
+  /** Lista SÓ os jogos do dono informado (isolamento por criador). */
+  myGames: (ownerToken: string) =>
+    request<{ count: number; games: GameListItem[] }>(
+      `/api/games?owner=${encodeURIComponent(ownerToken)}`,
+    ),
 
   getGame: (id: string) => request<Game>(`/api/games/${id}`),
 

@@ -8,15 +8,22 @@ import { createGameLimiter } from '../middleware/rateLimit';
 export const gamesRouter = Router();
 
 /**
- * GET /api/games
- * Lista os jogos (só metadados, sem perguntas/gabarito), do mais novo ao
- * mais antigo. Serve para o frontend resolver qual jogo abrir quando a URL
- * não traz um id explícito.
+ * GET /api/games?owner=<token>
+ * Lista SÓ os jogos de um dono (metadados, sem perguntas/gabarito), do mais
+ * novo ao mais antigo. Sem `owner`, não lista nada — não há como enumerar os
+ * jogos de todo mundo. É o que garante que um criador não veja os jogos dos
+ * outros, mesmo sem sistema de login: o token é o segredo de cada criador.
  */
 gamesRouter.get(
   '/',
-  asyncHandler(async (_req, res) => {
+  asyncHandler(async (req, res) => {
+    const owner = typeof req.query.owner === 'string' ? req.query.owner.trim() : '';
+    if (!owner) {
+      return res.json({ count: 0, games: [] });
+    }
+
     const games = await prisma.game.findMany({
+      where: { ownerToken: owner },
       orderBy: { createdAt: 'desc' },
       select: {
         id: true,
@@ -43,6 +50,7 @@ gamesRouter.post(
 
     const game = await prisma.game.create({
       data: {
+        ownerToken: data.ownerToken,
         title: data.title,
         groupName: data.groupName,
         subjectTitle: data.subjectTitle,

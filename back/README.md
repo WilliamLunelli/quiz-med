@@ -91,10 +91,12 @@ calculada das outras três) — basta filtrar por `difficulty = "mista"`.
 
 ### `POST /api/games`
 
-Cria o jogo + perguntas. Resposta inclui o gabarito (lado autoria).
+Cria o jogo + perguntas. Exige `ownerToken` (identifica o criador; ver
+isolamento por dono). Resposta inclui o gabarito (lado autoria).
 
 ```json
 {
+  "ownerToken": "token-do-criador",
   "title": "Diagnóstico e Conduta no DPP",
   "groupName": "Grupo A",
   "subjectTitle": "Obstetrícia",
@@ -107,11 +109,12 @@ Cria o jogo + perguntas. Resposta inclui o gabarito (lado autoria).
 }
 ```
 
-### `GET /api/games`
+### `GET /api/games?owner=<token>`
 
-Lista os jogos (só metadados: id, título, matéria, grupo, data), do mais novo
-ao mais antigo. Sem perguntas nem gabarito. Serve para o frontend descobrir qual
-jogo abrir quando a URL não traz um id.
+Lista **só os jogos daquele dono** (metadados: id, título, matéria, grupo, data),
+do mais novo ao mais antigo. Sem `owner`, devolve lista vazia — não há como
+enumerar os jogos de todo mundo. É o que isola os criadores entre si sem login:
+o `owner` é o segredo de cada um. Nunca devolve `ownerToken`.
 
 ### `GET /api/games/:id`
 

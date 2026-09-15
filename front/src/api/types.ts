@@ -78,6 +78,7 @@ export interface CreateQuestionInput {
 }
 
 export interface CreateGamePayload {
+  ownerToken: string;
   title: string;
   groupName?: string;
   subjectTitle: string;

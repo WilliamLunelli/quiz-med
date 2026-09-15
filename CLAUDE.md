@@ -57,11 +57,34 @@ qual jogo abrir por `?game=<id>` na URL (o QR code), ou pega o mais recente via
 
 Duas "faces" no mesmo app:
 
-- **Participante** (padrão / `?game=<id>`): capa, nível, 10 perguntas, resultado.
-- **Autor** (`?criar`): monta o jogo (capa, cor por predefinida ou hex,
-  perguntas) e gera o QR code via `POST /api/games`.
+- **Autor** (tela inicial, sem `?game`): monta o jogo (capa, cor por predefinida
+  ou hex, perguntas), gera o QR code via `POST /api/games` e vê **Meus jogos**.
+- **Participante** (`?game=<id>`, o destino do QR): capa, nível, 10 perguntas,
+  resultado.
 
 A logo da faculdade fica em `front/public/` (versões branca e clara).
+
+## Isolamento por criador (sem login)
+
+Vários criadores usam o mesmo app, mas **um não vê os jogos do outro**, mesmo sem
+sistema de usuário:
+
+- Cada navegador guarda um **token de dono** aleatório em `localStorage`
+  (`front/src/lib/owner.ts`), enviado como `ownerToken` no `POST /api/games`.
+- `GET /api/games?owner=<token>` devolve **só** os jogos daquele token. Sem
+  `owner`, devolve lista vazia — **não há como enumerar os jogos de todos**.
+- `GET /api/games/:id` continua público (o participante precisa), mas **nunca**
+  expõe o `ownerToken`. O id (cuid) é a "chave" do jogo; quem não tem o link não
+  chega nele.
+
+Se um dia houver login, o `ownerToken` vira o vínculo com a conta.
+
+## Git: sem coautoria de IA
+
+**Não** adicione linhas de atribuição/coautoria de IA nas mensagens de commit
+nem em PRs (nada de `Co-Authored-By: Claude…` ou "Generated with Claude Code").
+Commits em nome do autor humano apenas. (Regra do dono do projeto; vale mesmo
+que o ambiente sugira o contrário.)
 
 > **npm nesta máquina:** o `~/.npmrc` global tem `os=linux`, o que fazia o npm
 > instalar os binários nativos do Rollup para Linux e quebrava o build do Vite

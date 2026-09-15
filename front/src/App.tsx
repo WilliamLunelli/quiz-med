@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties } from 'react';
-import { api, ApiError } from './api/client';
+import { api } from './api/client';
 import type { AnswerResponse, Difficulty, FinishSummary, Game, PlayQuestion } from './api/types';
 import { LEVELS } from './lib/difficulty';
 import { CoverScreen } from './screens/CoverScreen';
@@ -33,28 +33,9 @@ type Phase =
   | 'result'
   | 'review';
 
-/** Modo de criação de jogo, ativado por ?criar (ou ?create) na URL. */
-function isCreateMode(): boolean {
-  const params = new URLSearchParams(window.location.search);
-  return params.has('criar') || params.has('create');
-}
-
-/** Navega para o modo de criação. */
+/** Volta para a tela inicial (criar jogo), limpando o ?game da URL. */
 function goToCreate() {
-  window.location.href = `${window.location.pathname}?criar`;
-}
-
-/** Resolve qual jogo abrir: ?game=<id> na URL, VITE_DEFAULT_GAME_ID, ou o mais recente. */
-async function resolveGameId(): Promise<string> {
-  const fromUrl = new URLSearchParams(window.location.search).get('game');
-  if (fromUrl) return fromUrl;
-
-  const fromEnv = import.meta.env.VITE_DEFAULT_GAME_ID as string | undefined;
-  if (fromEnv) return fromEnv;
-
-  const { games } = await api.listGames();
-  if (games.length === 0) throw new ApiError(404, 'Nenhum jogo cadastrado ainda.');
-  return games[0].id;
+  window.location.href = window.location.pathname;
 }
 
 export function App() {
@@ -76,17 +57,17 @@ export function App() {
   const [busy, setBusy] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
 
-  // Carrega o jogo ao abrir (exceto no modo de criação).
+  // Tela inicial = criar jogo. O participante só entra com ?game=<id> (o QR code).
   useEffect(() => {
-    if (isCreateMode()) {
+    const gameId = new URLSearchParams(window.location.search).get('game');
+    if (!gameId) {
       setPhase('create');
       return;
     }
     let active = true;
     (async () => {
       try {
-        const id = await resolveGameId();
-        const g = await api.getGame(id);
+        const g = await api.getGame(gameId);
         if (!active) return;
         setGame(g);
         setPhase('cover');

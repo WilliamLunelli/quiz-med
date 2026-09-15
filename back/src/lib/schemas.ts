@@ -13,6 +13,7 @@ export const createQuestionSchema = z.object({
 });
 
 export const createGameSchema = z.object({
+  ownerToken: z.string().trim().min(1, 'ownerToken é obrigatório.').max(200),
   title: z.string().trim().min(1, 'Título é obrigatório.'),
   groupName: z.string().trim().default(''),
   subjectTitle: z.string().trim().min(1, 'Título da matéria é obrigatório.'),

@@ -18,9 +18,12 @@ model Game {
   subjectTitle  String // título da matéria/disciplina
   coverPhotoUrl String? // foto de capa (grupo)
   primaryColor  String     @default("#162052") // cor institucional
+  ownerToken    String // identifica quem criou o jogo (segredo do criador; nunca exposto por id)
   createdAt     DateTime   @default(now())
   questions     Question[]
   attempts      Attempt[]
+
+  @@index([ownerToken])
 }
 
 model Question {

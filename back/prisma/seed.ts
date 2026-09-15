@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -50,6 +51,9 @@ async function main() {
 
   const game = await prisma.game.create({
     data: {
+      // Dono aleatório: o jogo semeado é uma demo, não pertence a nenhum
+      // criador real; continua acessível por id (?game=<id>).
+      ownerToken: `seed-${randomUUID()}`,
       title: seed.game.title,
       groupName: seed.game.groupName ?? '',
       subjectTitle: seed.game.subjectTitle,
