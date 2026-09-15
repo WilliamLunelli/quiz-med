@@ -14,8 +14,9 @@ Ao final você terá:
 
 ## 1. Banco de dados no Neon
 
-1. Crie conta em <https://neon.tech> e um **projeto** (região mais perto do Brasil,
-   ex.: US East). O plano free basta.
+1. Crie conta em <https://neon.tech> e um **projeto**. Região: **AWS South
+   America East 1 (São Paulo)** — a mais perto do Brasil. Deixe **Neon Auth
+   desligado** (não usamos). O plano free basta.
 2. No painel do projeto, abra **Connection Details**. Você precisa de **duas**
    strings de conexão:
    - **Pooled** (o host tem `-pooler` no nome) → será o `DATABASE_URL`.
@@ -64,8 +65,13 @@ O seed não é obrigatório: qualquer pessoa cria o próprio jogo pela tela inic
    `https://quiz-med-back.vercel.app`).
 5. Teste: abra `<URL-do-backend>/health` — deve responder `{"status":"ok",...}`.
 
-> O `back/vercel.json` já faz o Express rodar como função serverless e manda
-> todas as rotas para ele. O `prisma generate` roda sozinho no build.
+> O `back/vercel.json` já faz o Express rodar como função serverless, manda
+> todas as rotas para ele, e fixa a região em **São Paulo (`gru1`)** para ficar
+> perto do banco no Neon. O `prisma generate` roda sozinho no build.
+>
+> Se a Vercel reclamar da região no plano free, remova a linha `"regions"` do
+> `back/vercel.json` — o backend roda nos EUA e funciona igual, só um pouco mais
+> lento por consulta.
 
 ---
 
