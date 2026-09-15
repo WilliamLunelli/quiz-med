@@ -1,0 +1,68 @@
+// Quiz individual de verdadeiro/falso (Obstetrícia - DPP)
+// Modelo REST simples: cada participante faz uma tentativa independente.
+// Sem salas, sem Socket.io, sem sincronização ao vivo.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id            String     @id @default(cuid())
+  title         String // título do trabalho
+  groupName     String // nome do grupo
+  subjectTitle  String // título da matéria/disciplina
+  coverPhotoUrl String? // foto de capa (grupo)
+  primaryColor  String     @default("#162052") // cor institucional
+  createdAt     DateTime   @default(now())
+  questions     Question[]
+  attempts      Attempt[]
+}
+
+model Question {
+  id            String          @id @default(cuid())
+  gameId        String
+  game          Game            @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  text          String
+  correctAnswer Boolean
+  difficulty    String // "facil" | "media" | "dificil" | "mista"
+  hint          String? // opcional
+  explanation   String // fundamentação, mostrada após responder
+  order         Int             @default(0)
+  answers       AttemptAnswer[]
+
+  @@index([gameId, difficulty, order])
+}
+
+model Attempt {
+  id              String          @id @default(cuid())
+  gameId          String
+  game            Game            @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  participantName String
+  difficulty      String // nível escolhido no início
+  score           Int             @default(0)
+  startedAt       DateTime        @default(now())
+  finishedAt      DateTime?
+  answers         AttemptAnswer[]
+
+  @@index([gameId])
+}
+
+model AttemptAnswer {
+  id           String   @id @default(cuid())
+  attemptId    String
+  attempt      Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionId   String
+  question     Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answerGiven  Boolean
+  isCorrect    Boolean
+  usedHint     Boolean  @default(false)
+  pointsEarned Int
+  answeredAt   DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+}

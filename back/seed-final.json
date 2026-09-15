@@ -1,0 +1,331 @@
+{
+  "game": {
+    "title": "Diagnóstico e Conduta no Descolamento Prematuro de Placenta",
+    "groupName": "",
+    "subjectTitle": "Obstetrícia",
+    "coverPhotoUrl": null,
+    "primaryColor": "#162052"
+  },
+  "questions": [
+    {
+      "text": "O Descolamento Prematuro de Placenta (DPP) é definido como a separação da placenta normalmente inserida do corpo uterino antes do nascimento do feto, em gestação de 20 ou mais semanas.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Considere a idade gestacional limite e o momento do parto estabelecidos pelas diretrizes da OMS e FIGO.",
+      "explanation": "Definição oficial da OMS e FIGO. O descolamento que ocorre após o nascimento do feto corresponde à dequitação pós-parto fisiológica.",
+      "order": 0
+    },
+    {
+      "text": "O sangramento vaginal visível está presente em 100% dos casos clínicos de descolamento prematuro de placenta.",
+      "correctAnswer": false,
+      "difficulty": "facil",
+      "hint": "Lembre-se de que o sangue pode ficar retido na cavidade uterina sob a forma de hematoma retroplacentário.",
+      "explanation": "O sangramento genital ocorre em aproximadamente 80% dos casos. Nos outros 20%, a hemorragia é oculta/retida.",
+      "order": 1
+    },
+    {
+      "text": "O pulso paradoxal de Boero é caracterizado por anemia aguda acompanhada de pulso cheio sem taquicardia.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Observe a relação incomum e assíncrona entre o pulso arterial e o grau de anemia aguda na gestante.",
+      "explanation": "Sinal propedêutico clássico do DPP em que a anemia aguda grave ocorre acompanhada de pulso mantido e sem taquicardia proporcional.",
+      "order": 2
+    },
+    {
+      "text": "A ultrassonografia é um exame indispensável e obrigatório para confirmar o DPP, pois sempre identifica a área de descolamento.",
+      "correctAnswer": false,
+      "difficulty": "facil",
+      "hint": "Reflita sobre o caráter soberano do exame clínico e se a ultrassonografia pode apresentar resultado normal no DPP agudo.",
+      "explanation": "O diagnóstico de DPP é essencialmente clínico. A ultrassonografia pode ser normal na fase hiperaguda e não deve atrasar a conduta.",
+      "order": 3
+    },
+    {
+      "text": "As Doenças Hipertensivas da Gestação (SHEG) e o tabagismo são fatores de risco conhecidos para o desenvolvimento do DPP.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Pense nos fatores vasculares endoteliais e comportamentais que prejudicam a perfusão uteroplacentária.",
+      "explanation": "A hipertensão materna (SHEG) é a principal etiologia do DPP, e o tabagismo atua como fator vascular de risco relevante.",
+      "order": 4
+    },
+    {
+      "text": "No Grau III da classificação clínica do DPP, ocorre obrigatoriamente a presença de óbito fetal.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Avalie a vitalidade fetal que diferencia os Graus I e II em relação ao Grau III.",
+      "explanation": "A morte fetal é a característica definidora obrigatória do Grau III na classificação de Sher.",
+      "order": 5
+    },
+    {
+      "text": "Na comparação com o DPP, o sangramento vaginal da Placenta Prévia costuma apresentar cor escura.",
+      "correctAnswer": false,
+      "difficulty": "facil",
+      "hint": "Lembre-se da diferença entre o sangue retido/hematoma retroplacentário e o sangue vermelho vivo (fresco).",
+      "explanation": "O sangramento no DPP é tipicamente de cor escura. Na Placenta Prévia, o sangramento é rutilante (vermelho vivo).",
+      "order": 6
+    },
+    {
+      "text": "A apoplexia útero-placentária caracteriza-se pela infiltração sanguínea no miométrio que se estende até a serosa uterina.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Associe este achado anatomopatológico ao aspecto macroscópico do chamado Útero de Couvelaire.",
+      "explanation": "Trata-se do extravasamento hemorrágico agudo para as fibras miometriais atingindo o folheto seroso (Útero de Couvelaire).",
+      "order": 7
+    },
+    {
+      "text": "A taxa de mortalidade fetal associada ao Descolamento Prematuro de Placenta varia de 12% a 20%.",
+      "correctAnswer": true,
+      "difficulty": "facil",
+      "hint": "Pense no forte impacto do descolamento sobre a anóxia fetal severa no terceiro trimestre.",
+      "explanation": "A mortalidade fetal no DPP é elevada, variando de 12% a 20% segundo dados epidemiológicos oficiais.",
+      "order": 8
+    },
+    {
+      "text": "O Grau I de descolamento prematuro de placenta manifesta-se tipicamente com hipertonia uterina acentuada e sofrimento fetal grave.",
+      "correctAnswer": false,
+      "difficulty": "facil",
+      "hint": "Considere em qual grau os sintomas são leves ou ausentes e o diagnóstico é retrospectivo no pós-parto.",
+      "explanation": "O Grau I é assintomático ou oligosintomático, sem hipertonia significativa e com vitalidade fetal preservada.",
+      "order": 9
+    },
+    {
+      "text": "A apoplexia útero-placentária desenvolve-se obrigatoriamente em decorrência de embolia ou trombose dos vasos uterinos.",
+      "correctAnswer": false,
+      "difficulty": "media",
+      "hint": "Preste atenção se há ou não obstrução vascular por trombo ou êmbolo na gênese do hematoma miometrial.",
+      "explanation": "A infiltração sanguínea miometrial ocorre por incursão súbita e repentina de sangue, sem embolia ou trombose vascular.",
+      "order": 0
+    },
+    {
+      "text": "O Grau III da classificação clínica do DPP subdivide-se em IIIA (com coagulopatia instalada) e IIIB (sem coagulopatia instalada).",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Verifique a subdivisão baseada no estado hemostático e de coagulação materna diante da morte fetal.",
+      "explanation": "Subdivisão oficial do Grau III: IIIA indica presença de coagulopatia de consumo e IIIB ausência de coagulopatia.",
+      "order": 1
+    },
+    {
+      "text": "Na presença de DPP com feto vivo (BCF positivo), a única via de parto indicada de forma absoluta é a cesárea imediata.",
+      "correctAnswer": false,
+      "difficulty": "media",
+      "hint": "Reflita se a via vaginal é viável e recomendada em casos com condições de aceleração rápida com amniotomia.",
+      "explanation": "Embora a cesárea seja frequente, a aceleração do parto vaginal acompanhada de amniotomia é indicação válida se o parto for iminente.",
+      "order": 2
+    },
+    {
+      "text": "O sofrimento fetal na Placenta Prévia é grave e precoce, ao passo que no DPP ele é ausente ou tardio.",
+      "correctAnswer": false,
+      "difficulty": "media",
+      "hint": "Lembre-se de qual condição causa anóxia fetal hiperaguda por interrupção da troca gasosa na área de descolamento.",
+      "explanation": "Inversão de conceitos: no DPP o sofrimento fetal é grave e precoce; na Placenta Prévia ele é ausente ou tardio.",
+      "order": 3
+    },
+    {
+      "text": "A realização da amniotomia na Placenta Prévia reduz a hemorragia, enquanto no DPP a amniotomia não altera a taxa de hemorragia.",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Compare o efeito mecânico do rebaixamento da apresentação fetal sobre a parede uterina e segmento inferior.",
+      "explanation": "Na Placenta Prévia a amniotomia comprime o bordo placentário reduzindo o sangramento; no DPP ela reduz a pressão sem alterar a taxa de perda.",
+      "order": 4
+    },
+    {
+      "text": "A incidência do Descolamento Prematuro de Placenta varia entre 0,5% e 2,5% de todas as gestações.",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Considere a faixa percentual de prevalência descrita na literatura obstétrica para a patologia.",
+      "explanation": "Dado epidemiológico exato citado nas diretrizes da OMS e FIGO (0,5% a 2,5%).",
+      "order": 5
+    },
+    {
+      "text": "A metrossístole (contração uterina) atua reduzindo o sangramento no DPP, mas aumenta o sangramento na Placenta Prévia.",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Avalie o comportamento do local da inserção placentária durante o encurtamento das fibras miometriais.",
+      "explanation": "No DPP a contração comprime os vasos abertos na área descolada; na Placenta Prévia causa cisalhamento do segmento inferior e sangra mais.",
+      "order": 6
+    },
+    {
+      "text": "A Necrose Tubular Aguda (NTA), gerando insuficiência renal, e a Síndrome de Sheehan são complicações sistêmicas maternas do DPP.",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Associe a isquemia hipofisária pós-parto e a hipoperfusão renal ao choque hemorrágico grave do DPP.",
+      "explanation": "O choque hipovolêmico grave e a CIVD no DPP podem levar à IRA por NTA e necrose hipofisária (Síndrome de Sheehan).",
+      "order": 7
+    },
+    {
+      "text": "Multiparidade, polidramnio, trauma abdominal e leiomiomas uterinos são fatores etiológicos predisponentes ao DPP.",
+      "correctAnswer": true,
+      "difficulty": "media",
+      "hint": "Considere distensões uterinas bruscas e alterações anatômicas no miométrio como gatilhos para o descolamento.",
+      "explanation": "Todos estes itens constituem fatores de risco mecânicos, vasculares e anatômicos consolidados no DPP.",
+      "order": 8
+    },
+    {
+      "text": "No Grau II de DPP, além do sangramento moderado e da hipertonia uterina, o feto encontra-se morto no momento do diagnóstico.",
+      "correctAnswer": false,
+      "difficulty": "media",
+      "hint": "Atente para o detalhe da vitalidade fetal que caracteriza especificamente o Grau II (feto comprometido vs óbito).",
+      "explanation": "No Grau II o feto está VIVO (com vitalidade prejudicada). O óbito fetal é a marca exclusiva do Grau III.",
+      "order": 9
+    },
+    {
+      "text": "No DPP, a intensidade da anemia materna é sempre diretamente proporcional à quantidade de sangramento genital exteriorizado.",
+      "correctAnswer": false,
+      "difficulty": "dificil",
+      "hint": "Lembre-se da pegadinha do sangramento oculto e da formação do hematoma retroplacentário.",
+      "explanation": "A anemia no DPP é frequentemente desproporcional ao sangramento visível devido ao acúmulo de sangue retido.",
+      "order": 0
+    },
+    {
+      "text": "A taxa de mortalidade materna no Descolamento Prematuro de Placenta varia entre 1% e 3%.",
+      "correctAnswer": true,
+      "difficulty": "dificil",
+      "hint": "Analise o risco de letalidade materna em centros de atendimento emergencial obstétrico.",
+      "explanation": "A taxa de mortalidade materna permanece relevante (1% a 3%) decorrente de choque hemorrágico e coagulopatias.",
+      "order": 1
+    },
+    {
+      "text": "O diagnóstico do Grau I de DPP é rotineiramente realizado no período pós-parto, mediante a verificação de coágulo retroplacentário.",
+      "correctAnswer": true,
+      "difficulty": "dificil",
+      "hint": "Considere o fato de o Grau I ser oligosintomático e sem repercussão hemodinâmica materna ou fetal imediata.",
+      "explanation": "Por ser assintomático durante o trabalho de parto, a confirmação do Grau I ocorre pela inspecção do coágulo na placenta dequitada.",
+      "order": 2
+    },
+    {
+      "text": "Quando o feto está morto (BCF negativo) em decorrência do DPP, a indicação cirúrgica de histerectomia é a primeira conduta de escolha.",
+      "correctAnswer": false,
+      "difficulty": "dificil",
+      "hint": "Verifique se o objetivo inicial é o esvaziamento uterino (parto vaginal/amniotomia) antes de se decidir por histerectomia.",
+      "explanation": "A conduta inicial frente ao feto morto é acelerar o parto vaginal ou cesárea. Histerectomia é apenas sequela de exceção em atonia refratária.",
+      "order": 3
+    },
+    {
+      "text": "A presença de hemoâmnio e taquissistolia uterina constituem achados clínicos frequentes e indicativos de DPP.",
+      "correctAnswer": true,
+      "difficulty": "dificil",
+      "hint": "Associe o extravasamento de sangue para a cavidade amniótica com a irritabilidade miometrial acentuada.",
+      "explanation": "O sangue retido pode invadir as membranas causando hemoâmnio e irritar a musculatura uterina gerando taquissistolia.",
+      "order": 4
+    },
+    {
+      "text": "O descolamento da placenta ocorrido logo após o nascimento do feto é denominado fisiologicamente como DPP.",
+      "correctAnswer": false,
+      "difficulty": "dificil",
+      "hint": "Atente para a precisão dos termos obstétricos: dequitação pós-parto versus descolamento prematuro.",
+      "explanation": "O descolamento após o nascimento do feto é a dequitação/delivramento normal. O DPP exige ocorra ANTES do nascimento.",
+      "order": 5
+    },
+    {
+      "text": "A hipertensão arterial materna é um achado típico tanto nos casos de DPP quanto nos casos de Placenta Prévia.",
+      "correctAnswer": false,
+      "difficulty": "dificil",
+      "hint": "Compare a etiologia vascular hipertensiva do DPP com a etiologia da Placenta Prévia.",
+      "explanation": "A hipertensão é típica no DPP (presente em >50% dos casos), porém é RARA na Placenta Prévia.",
+      "order": 6
+    },
+    {
+      "text": "A hipertonia uterina (útero de consistência lenhosa) é típica do DPP e caracteristicamente ausente na Placenta Prévia.",
+      "correctAnswer": true,
+      "difficulty": "dificil",
+      "hint": "Sinta a diferença à palpação do abdome materno entre as duas síndromes hemorrágicas do 3º trimestre.",
+      "explanation": "O 'útero de madeira' (hipertonia) é marca do DPP. Na Placenta Prévia o tônus uterino é normal e o abdome é indolor.",
+      "order": 7
+    },
+    {
+      "text": "Alterações posturais da pressão arterial, taquicardia e queda dos níveis séricos de fibrinogênio caracterizam o Grau II de DPP.",
+      "correctAnswer": true,
+      "difficulty": "dificil",
+      "hint": "Associe a instabilidade hemodinâmica intermediária e o consumo de fatores de coagulação ao Grau II.",
+      "explanation": "Parâmetros hemodinâmicos e laboratoriais exatos que definem o Grau II da classificação de Sher.",
+      "order": 8
+    },
+    {
+      "text": "Anomalias uterinas como útero bicorno ou presença de leiomiomas não apresentam correlação com a ocorrência de DPP.",
+      "correctAnswer": false,
+      "difficulty": "dificil",
+      "hint": "Revisite os fatores de risco anatômicos locais apontados na literatura para a dequitação prematura.",
+      "explanation": "Anomalias uterinas e leiomiomas alteram a implantação e a vascularização decidual, aumentando o risco de DPP.",
+      "order": 9
+    },
+    {
+      "text": "O quadro de DPP possui início insidioso e gravidade progressiva, enquanto a Placenta Prévia possui início súbito e grave desde o começo.",
+      "correctAnswer": false,
+      "difficulty": "mista",
+      "hint": "Cuidado com a inversão dos conceitos de instalação aguda versus insidiosa das hemorragias.",
+      "explanation": "Inversão clássica: o DPP é de início súbito e grave desde o começo; a Placenta Prévia é de instalação insidiosa.",
+      "order": 0
+    },
+    {
+      "text": "As coagulopatias maternas e as trombofilias hereditárias aumentam o risco de ocorrência de descolamento prematuro de placenta.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Associe as alterações na microcirculação decidual e hemostasia ao risco de DPP.",
+      "explanation": "Trombofilias e distúrbios de coagulação comprometem os vasos uteroplacentários e são fatores de risco documentados.",
+      "order": 1
+    },
+    {
+      "text": "A ultrassonografia no DPP é conclusiva em 100% dos exames, sendo o parâmetro definitivo para excluir o diagnóstico se vier normal.",
+      "correctAnswer": false,
+      "difficulty": "mista",
+      "hint": "Lembre-se da sensibilidade limitada da ecografia na fase hiperaguda do hematoma retroplacentário.",
+      "explanation": "A USG pode ser normal em até 50% dos casos. Um resultado ultrassonográfico normal JAMAIS exclui o DPP.",
+      "order": 2
+    },
+    {
+      "text": "O Grau IIIA da classificação do DPP é definido pela presença de óbito fetal associado à coagulopatia instalada.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Diferencie as subdivisões A e B do Grau III quanto à presença do distúrbio hemorrágico/coagulopatia.",
+      "explanation": "Grau III = óbito fetal; Subdivisão A = COM coagulopatia instalada (Grau IIIA).",
+      "order": 3
+    },
+    {
+      "text": "A dor abdominal no DPP caracteriza-se por apresentar intensidade constante e idêntica em todas as pacientes atingidas.",
+      "correctAnswer": false,
+      "difficulty": "mista",
+      "hint": "Observe que a dor no DPP varia desde desconforto leve até dor excruciante em pontada.",
+      "explanation": "A dor abdominal no DPP é descrita expressamente como de 'intensidade variável'.",
+      "order": 4
+    },
+    {
+      "text": "A associação de hipotensão arterial materna, hipertonia uterina severa e óbito fetal compõe o quadro clássico do Grau III de DPP.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Lembre-se da tríade máxima de gravidade do descolamento com perda do concepto e choque materno.",
+      "explanation": "Tríade clínica máxima que caracteriza a forma mais grave do descolamento placentário (Grau III).",
+      "order": 5
+    },
+    {
+      "text": "A apoplexia uterina (Útero de Couvelaire) pode levar à atonia uterina pós-parto e exigir a realização de histerectomia de urgência.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Reflita sobre como o extravasamento de sangue entre as fibras musculares afeta a capacidade de contração do útero.",
+      "explanation": "A infiltração hemorrágica desorganiza o miométrio impedindo a hemostasia puerperal pelas ligaduras fisiológicas de Pinard.",
+      "order": 6
+    },
+    {
+      "text": "Na conduta do DPP com feto vivo, a amniotomia é expressamente proibida por provocar a piora da hemorragia retroplacentária.",
+      "correctAnswer": false,
+      "difficulty": "mista",
+      "hint": "Pense sobre o benefício da descompressão intrauterina e estimulação do trabalho de parto proporcionados pela amniotomia.",
+      "explanation": "A amniotomia é um procedimento benéfico e recomendado: reduz a pressão cavitária, diminui a infiltração miometrial e acelera o parto.",
+      "order": 7
+    },
+    {
+      "text": "O hematoma retroplacentário é a lesão anatomopatológica básica do DPP que pode ser identificada ao ultrassom como área ecogênica ou anecoica.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Considere o acúmulo de sangue retido entre a parede uterina e a face materna da placenta.",
+      "explanation": "Representa a lesão patognomônica primária formada pelo acúmulo de sangue no espaço decidual.",
+      "order": 8
+    },
+    {
+      "text": "As referências bibliográficas fundamentais da conduta no DPP incluem os tratados de Obstetrícia de Rezende, Williams e Zugaib.",
+      "correctAnswer": true,
+      "difficulty": "mista",
+      "hint": "Consulte os livros-texto de referência recomendados na disciplina da Faculdade São Leopoldo Mandic.",
+      "explanation": "Três obras clássicas indicadas explicitamente pelo Prof. Marcelo Chaib no encerramento da aula.",
+      "order": 9
+    }
+  ]
+}

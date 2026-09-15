@@ -1,0 +1,17 @@
+# Dependências e builds de qualquer subprojeto (back/, front/)
+**/node_modules/
+**/dist/
+
+# Variáveis de ambiente
+**/.env
+**/.env.local
+
+# Logs e SO
+*.log
+.DS_Store
+
+# Handoff de design (artefato de entrada, não fonte)
+*-handoff.zip
+
+# TypeScript incremental build info
+**/*.tsbuildinfo

@@ -1,0 +1,546 @@
+/* ============================================================
+   Quiz DPP — estilos globais
+   Tokens e componentes derivados do design "broadsheet" do handoff.
+   Mobile-first; em telas largas o conteúdo se espalha (ver blocos @media).
+   ============================================================ */
+
+:root {
+  --q-navy: #162052; /* cor primária do jogo (sobrescrita pela capa) */
+  --bg: #f3f2f2;
+  --ink: #201e1d;
+  --cyan: #0088b0;
+  --cyan-700: #006786;
+  --green: #1d5c43;
+  --red: #b3122b;
+  --yellow: #edbb00;
+
+  --ink-45: rgba(32, 30, 29, 0.45);
+  --ink-55: rgba(32, 30, 29, 0.55);
+  --ink-60: rgba(32, 30, 29, 0.6);
+  --ink-78: rgba(32, 30, 29, 0.78);
+
+  --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font-family: var(--font);
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* --- Casca da aplicação: ocupa toda a viewport --- */
+.app-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+}
+
+/* Cada "tela" preenche a viewport inteira (fundo full-bleed) e rola se preciso. */
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg);
+}
+.screen--navy {
+  background: var(--q-navy);
+  color: #fff;
+}
+
+/* Coluna de conteúdo centralizada. No mobile preenche a altura (o
+   .stack-bottom pina o CTA no rodapé); no desktop centraliza vertical. */
+.screen-inner {
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: max(30px, env(safe-area-inset-top)) 24px max(26px, env(safe-area-inset-bottom));
+}
+
+.stack-bottom {
+  margin-top: auto;
+}
+
+/* ====================== TELAS LARGAS ====================== */
+@media (min-width: 720px) {
+  .screen-inner {
+    flex: none;
+    margin-block: auto; /* centraliza no eixo vertical; rola se for maior */
+    max-width: 620px;
+    padding: 56px 40px;
+  }
+  .screen-inner--wide {
+    max-width: 900px;
+  }
+  .screen-inner--hero {
+    max-width: 1000px;
+  }
+  /* Em tela larga o CTA volta ao fluxo normal (não pinado no rodapé). */
+  .stack-bottom {
+    margin-top: 36px;
+  }
+}
+
+/* --- Rótulos "kicker" (versalete) --- */
+.kicker {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.kicker--muted {
+  color: var(--ink-55);
+}
+
+/* --- Botões grandes --- */
+.qbtn {
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 600;
+  line-height: 1;
+  transition: filter 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+}
+.qbtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.qbtn--navy {
+  background: var(--q-navy);
+  color: #fff;
+}
+.qbtn--navy:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+.qbtn--white {
+  background: #fff;
+  color: var(--q-navy);
+  border: 2px solid var(--q-navy);
+}
+.qbtn--white:not(:disabled):hover {
+  background: #f4f6fb;
+}
+.qbtn--outline {
+  background: none;
+  border: 1px solid rgba(22, 32, 82, 0.3);
+  color: var(--q-navy);
+}
+.qbtn--outline:not(:disabled):hover {
+  background: rgba(22, 32, 82, 0.05);
+}
+.qbtn--ghost {
+  background: none;
+  border: 0;
+  color: var(--cyan);
+  font-weight: 400;
+  cursor: pointer;
+}
+.qbtn--ghost:hover {
+  color: var(--cyan-700);
+}
+
+/* --- Tags de nível --- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 1.5px;
+  font-weight: 400;
+}
+.tag-accent {
+  background: #e9f8ff;
+  color: #004961;
+}
+.tag-accent-2 {
+  background: #fff1f4;
+  color: #790e3d;
+}
+.tag-neutral {
+  background: #f8f4f4;
+  color: #444141;
+}
+.tag-outline {
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+}
+
+/* --- Barra de progresso (10 tracinhos) --- */
+.ticks {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+}
+.tick {
+  height: 3px;
+  background: rgba(22, 32, 82, 0.16);
+}
+.tick.on {
+  background: var(--q-navy);
+}
+
+/* --- Bloco "Por que" (fundamentação) --- */
+.why {
+  display: flex;
+  gap: 12px;
+}
+.why-bar {
+  width: 5px;
+  flex: none;
+  align-self: stretch;
+}
+.why-text {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* --- Campo de nome (entrada grande com sublinhado) --- */
+.name-input {
+  width: 100%;
+  border: 0;
+  background: none;
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--ink);
+  padding: 0 0 10px;
+  border-bottom: 2px solid var(--q-navy);
+  caret-color: var(--cyan);
+  outline: none;
+}
+.name-input::placeholder {
+  color: rgba(32, 30, 29, 0.35);
+}
+
+/* ====================== CAPA ====================== */
+.cover-logo {
+  height: 26px;
+  width: auto;
+  align-self: flex-start;
+  opacity: 0.95;
+}
+.cover-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cover-copy {
+  order: 1;
+}
+.cover-media {
+  order: 2;
+  position: relative;
+  height: 196px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 26px;
+}
+.cover-cta {
+  order: 3;
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+@media (min-width: 720px) {
+  .cover-grid {
+    flex: none;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-areas: 'copy media' 'cta media';
+    column-gap: 56px;
+    align-items: start;
+  }
+  .cover-copy {
+    grid-area: copy;
+  }
+  .cover-media {
+    grid-area: media;
+    align-self: center;
+    height: min(420px, 58vh);
+    margin-top: 0;
+  }
+  .cover-cta {
+    grid-area: cta;
+    align-self: end;
+    margin-top: 40px;
+    padding-top: 0;
+  }
+}
+
+/* ====================== NOME + NÍVEL ====================== */
+.levels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+@media (min-width: 720px) {
+  .levels-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ====================== PERGUNTA ====================== */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (min-width: 720px) {
+  .answers {
+    flex-direction: row;
+  }
+  .answers .qbtn {
+    flex: 1;
+  }
+}
+
+/* ====================== FEEDBACK ====================== */
+/* Mobile: faixa colorida full-bleed + corpo; CTA pinado no rodapé.
+   Desktop: um cartão centralizado, na mesma área da pergunta. */
+.fb-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.fb-band {
+  color: #fff;
+}
+.fb-band-inner {
+  max-width: 460px;
+  margin-inline: auto;
+  padding: max(56px, env(safe-area-inset-top)) 24px 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.fb-body {
+  flex: 1;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+  padding: 26px 24px 30px;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 720px) {
+  .screen--feedback {
+    justify-content: center;
+  }
+  .fb-card {
+    flex: none;
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 12px 40px rgba(45, 43, 43, 0.16);
+  }
+  .fb-band-inner {
+    max-width: none;
+    padding: 44px 44px 30px;
+  }
+  .fb-body {
+    flex: none;
+    max-width: none;
+    padding: 34px 44px 44px;
+  }
+}
+
+/* ====================== RESULTADO ====================== */
+.result-grid {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 860px) {
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .result-side {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ====================== CRIAR JOGO ====================== */
+.create-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 900px) {
+  .create-grid {
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field > label {
+  font-size: 12.5px;
+  color: var(--ink-60);
+}
+.field .hint-label {
+  font-style: italic;
+  font-size: 11.5px;
+  color: var(--ink-45);
+}
+.input {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 12px;
+  font: 15px/1.3 var(--font);
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid rgba(32, 30, 29, 0.18);
+  border-radius: 2px;
+}
+.input::placeholder {
+  color: rgba(32, 30, 29, 0.42);
+}
+.input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 0;
+  border-color: var(--cyan);
+}
+textarea.input {
+  min-height: 82px;
+  resize: vertical;
+}
+
+.swatches {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.swatch[aria-pressed='true'] {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.hex-input {
+  width: 120px;
+  min-height: 40px;
+  padding: 8px 10px;
+  font: 14px/1 ui-monospace, Menlo, monospace;
+  background: #fff;
+  border: 1px solid rgba(32, 30, 29, 0.18);
+  border-radius: 2px;
+  text-transform: lowercase;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid rgba(32, 30, 29, 0.18);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #fff;
+  flex-wrap: wrap;
+}
+.seg-opt {
+  padding: 9px 14px;
+  font: 13px/1 var(--font);
+  cursor: pointer;
+  color: var(--ink-60);
+  background: none;
+  border: 0;
+  border-left: 1px solid rgba(32, 30, 29, 0.18);
+}
+.seg-opt:first-child {
+  border-left: 0;
+}
+.seg-opt[aria-pressed='true'] {
+  background: var(--q-navy);
+  color: #fff;
+}
+
+.qitem {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(32, 30, 29, 0.1);
+  align-items: flex-start;
+}
+.create-logo {
+  height: 22px;
+  width: auto;
+}
+
+/* --- Utilidades --- */
+.spin {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(22, 32, 82, 0.2);
+  border-top-color: var(--q-navy);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
