@@ -4,11 +4,17 @@
 
 generator client {
   provider = "prisma-client-js"
+  // "native" para dev local; o alvo rhel é o runtime serverless da Vercel.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // Conexão do app: em produção (Neon) use a string COM pooling (pgbouncer).
+  url       = env("DATABASE_URL")
+  // Conexão direta, sem pooling: usada só para migrações (prisma migrate).
+  // Em dev local aponta para o mesmo banco do DATABASE_URL.
+  directUrl = env("DIRECT_URL")
 }
 
 model Game {

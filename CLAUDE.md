@@ -111,6 +111,20 @@ passthrough (não bloqueiam nada) e o servidor loga `Rate limit: DESATIVADO` ao
 subir. Rodando atrás de reverse proxy, configure também `TRUST_PROXY` para o
 limite enxergar o IP real do cliente.
 
+## Deploy (Vercel + Neon)
+
+Passo a passo completo em `DEPLOY.md`. Resumo:
+
+- **Front** e **back** sobem como dois projetos na Vercel a partir do mesmo repo
+  (Root Directory `front` e `back`). O back roda como função serverless
+  (`back/api/index.ts` + `back/vercel.json`).
+- **Postgres** em produção: Neon. O Prisma usa `DATABASE_URL` (pooled) no app e
+  `DIRECT_URL` (direto) nas migrações — por isso o schema tem `directUrl`.
+- **Local também exige `DIRECT_URL`** no `back/.env` (aponta para o mesmo banco
+  do Docker). Sem ele, `prisma validate/migrate` falha.
+- Migração em produção é manual: `DATABASE_URL=... DIRECT_URL=... npx prisma
+  migrate deploy`. A Vercel não roda migração no deploy.
+
 ## Regras de negócio que NÃO podem quebrar
 
 - **Todo cálculo de pontos e verificação de acerto acontece no servidor.** O
