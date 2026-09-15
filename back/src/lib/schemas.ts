@@ -17,7 +17,16 @@ export const createGameSchema = z.object({
   title: z.string().trim().min(1, 'Título é obrigatório.'),
   groupName: z.string().trim().default(''),
   subjectTitle: z.string().trim().min(1, 'Título da matéria é obrigatório.'),
-  coverPhotoUrl: z.string().trim().url().nullable().optional(),
+  // Aceita URL http(s) OU uma imagem embutida (data URI já comprimida no cliente).
+  coverPhotoUrl: z
+    .string()
+    .trim()
+    .refine(
+      (v) => /^https?:\/\//i.test(v) || /^data:image\/(png|jpe?g|webp|gif);base64,/i.test(v),
+      'Foto deve ser uma URL http(s) ou uma imagem enviada.',
+    )
+    .nullable()
+    .optional(),
   primaryColor: z
     .string()
     .trim()

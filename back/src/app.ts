@@ -28,7 +28,8 @@ export function createApp() {
 
   // Frontend mobile (QR code) roda em outra origem — CORS liberado.
   app.use(cors());
-  app.use(express.json({ limit: '1mb' }));
+  // 2mb dá margem para a foto de capa embutida (data URI já comprimida no cliente).
+  app.use(express.json({ limit: '2mb' }));
 
   // Health check fica FORA do rate limit (monitoramento não deve ser bloqueado).
   app.get('/health', (_req, res) => res.json({ status: 'ok', ts: new Date().toISOString() }));

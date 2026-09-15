@@ -5,6 +5,7 @@ import { api, ApiError } from '../api/client';
 import type { Difficulty, GameListItem } from '../api/types';
 import { LEVELS, LEVEL_ORDER } from '../lib/difficulty';
 import { getOwnerToken } from '../lib/owner';
+import { dataUrlSizeKb, fileToCompressedDataUrl } from '../lib/image';
 
 const COLOR_PRESETS = ['#162052', '#0088b0', '#d6006c', '#1d5c43', '#201e1d'];
 const HEX_RE = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -44,6 +45,8 @@ export function CreateGameScreen() {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const [photoError, setPhotoError] = useState<string | null>(null);
 
   const [myGames, setMyGames] = useState<GameListItem[]>([]);
   const [qrTarget, setQrTarget] = useState<{ id: string; title: string } | null>(null);
@@ -124,6 +127,22 @@ export function CreateGameScreen() {
     setDraft(emptyDraft());
     setEditKey(null);
     setError(null);
+  };
+
+  const onPickFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ''; // permite reescolher o mesmo arquivo
+    if (!file) return;
+    setPhotoError(null);
+    setPhotoBusy(true);
+    try {
+      const dataUrl = await fileToCompressedDataUrl(file);
+      setCoverPhotoUrl(dataUrl);
+    } catch (err) {
+      setPhotoError(err instanceof Error ? err.message : 'Não foi possível processar a imagem.');
+    } finally {
+      setPhotoBusy(false);
+    }
   };
 
   const submit = async () => {
@@ -277,9 +296,57 @@ export function CreateGameScreen() {
 
             <div className="field">
               <label>
-                Foto do grupo <span className="hint-label">opcional — URL da imagem</span>
+                Foto do grupo <span className="hint-label">opcional — envie do dispositivo ou cole uma URL</span>
               </label>
-              <input className="input" value={coverPhotoUrl} onChange={(e) => setCoverPhotoUrl(e.target.value)} placeholder="https://…/foto.jpg" />
+
+              {coverPhotoUrl && (
+                <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 4 }}>
+                  <img
+                    src={coverPhotoUrl}
+                    alt="Prévia da capa"
+                    style={{ width: 72, height: 72, objectFit: 'cover', borderRadius: 4, border: '1px solid rgba(32,30,29,.15)', flex: 'none' }}
+                    onError={(e) => (e.currentTarget.style.display = 'none')}
+                  />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
+                    <span style={{ font: '400 12px/1.3 var(--font)', color: 'var(--ink-55)' }}>
+                      {coverPhotoUrl.startsWith('data:')
+                        ? `imagem enviada · ~${dataUrlSizeKb(coverPhotoUrl)} KB`
+                        : 'imagem por URL'}
+                    </span>
+                    <button
+                      className="qbtn--ghost"
+                      style={{ font: '400 13px/1 var(--font)', color: 'var(--red)', padding: 0, textAlign: 'left' }}
+                      onClick={() => {
+                        setCoverPhotoUrl('');
+                        setPhotoError(null);
+                      }}
+                    >
+                      remover
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {!coverPhotoUrl.startsWith('data:') && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <label
+                    className="qbtn qbtn--outline"
+                    style={{ height: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', width: 'auto', padding: '0 18px', font: '600 14px/1 var(--font)' }}
+                  >
+                    {photoBusy ? 'Processando…' : 'Enviar foto do dispositivo'}
+                    <input type="file" accept="image/*" hidden onChange={onPickFile} disabled={photoBusy} />
+                  </label>
+                  <input
+                    className="input"
+                    value={coverPhotoUrl}
+                    onChange={(e) => setCoverPhotoUrl(e.target.value)}
+                    placeholder="ou cole uma URL: https://…/foto.jpg"
+                  />
+                </div>
+              )}
+
+              {photoError && <span style={{ font: '400 12px/1.3 var(--font)', color: 'var(--red)' }}>{photoError}</span>}
+              <span className="hint-label">A foto é reduzida e comprimida no navegador antes de enviar.</span>
             </div>
           </div>
 
